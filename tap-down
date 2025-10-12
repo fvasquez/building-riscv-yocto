@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+  echo "ERROR: run as root"
+  exit 1
+fi
+
+sudo ip tuntap del dev tap0 mode tap

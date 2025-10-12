@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+  echo "ERROR: run as root"
+  exit 1
+fi
+
+IMAGE_DIR=build/tmp/deploy/images/qemuriscv64
+KERNEL="${IMAGE_DIR}/Image"
+ROOTFS="${IMAGE_DIR}/core-image-minimal-qemuriscv64.rootfs.ext4"
+
+qemu-system-riscv64 \
+    -machine virt \
+    -cpu rv64 \
+    -smp 4 \
+    -m 2G \
+    -netdev tap,id=mynet0,ifname=tap0,script=no,downscript=no \
+    -device virtio-net-pci,netdev=mynet0 \
+    -kernel "${KERNEL}" \
+    -drive file="${ROOTFS}",format=raw,if=none,id=hd0 \
+    -device virtio-blk-device,drive=hd0 \
+    -append "root=/dev/vda rw console=ttyS0" \
+    -nographic

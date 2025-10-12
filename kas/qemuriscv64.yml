@@ -1,0 +1,21 @@
+header:
+  version: 16
+
+machine: qemuriscv64
+distro: poky
+target:
+  - core-image-minimal
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/poky
+    branch: walnascar
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+local_conf_header:
+  meta: |
+    INHERIT += "rm_work"
+    IMAGE_FEATURES += "empty-root-password allow-root-login allow-empty-password ssh-server-openssh"
