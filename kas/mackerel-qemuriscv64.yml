@@ -1,0 +1,35 @@
+header:
+  version: 16
+
+machine: qemuriscv64
+distro: mackerel 
+target:
+  - core-image-minimal
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/poky
+    branch: walnascar
+    layers:
+      meta:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    branch: walnascar
+    layers:
+      meta-oe:
+
+  meta-mackerel:
+    commit: HEAD
+    layers:
+      meta-mackerel:
+
+local_conf_header:
+  meta: |
+    INHERIT += "rm_work"
+
+  debug-tweaks: |
+    EXTRA_IMAGE_FEATURES += "empty-root-password allow-root-login allow-empty-password"
+
+  package-management: |
+    EXTRA_IMAGE_FEATURES += "package-management"

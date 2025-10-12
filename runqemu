@@ -1,11 +1,12 @@
 #!/bin/bash
 
 if [ "$EUID" -ne 0 ]; then
-  echo "ERROR: run as root"
+  echo "ERROR: run as root or with sudo"
   exit 1
 fi
 
-IMAGE_DIR=build/tmp/deploy/images/qemuriscv64
+KAS_WORK_DIR=/var/home/frank/yocto
+IMAGE_DIR="${KAS_WORK_DIR}/build/tmp/deploy/images/qemuriscv64"
 KERNEL="${IMAGE_DIR}/Image"
 ROOTFS="${IMAGE_DIR}/core-image-minimal-qemuriscv64.rootfs.ext4"
 

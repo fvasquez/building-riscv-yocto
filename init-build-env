@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$(id -u)" -eq 0 ]; then
+    echo "ERROR: do not run as root or with sudo"
+    exit 1
+fi
+
+# Uncomment if container runtime is Podman not Docker
+# export KAS_CONTAINER_ENGINE=podman
+
+export KAS_WORK_DIR="${HOME}/yocto"
+export SSTATE_DIR="${KAS_WORK_DIR}/sstate-cache"
+export DL_DIR="${KAS_WORK_DIR}/downloads"
