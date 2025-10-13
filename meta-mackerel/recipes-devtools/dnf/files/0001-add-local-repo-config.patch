@@ -1,0 +1,17 @@
+Add local repository configuration
+
+Upstream-Status: Inappropriate [embedded specific]
+
+--- a/etc/dnf/dnf.conf
++++ b/etc/dnf/dnf.conf
+@@ -7,3 +7,10 @@
+ clean_requirements_on_remove=True
+ best=False
+ skip_if_unavailable=True
++
++[local]
++name=Local Repository
++baseurl=http://192.168.7.1:8080/$basearch
++        http://192.168.7.1:8080/noarch
++enabled=1
++gpgcheck=0
