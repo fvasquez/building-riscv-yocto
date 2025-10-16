@@ -7,6 +7,7 @@ This hands-on in-person workshop requires Linux on your laptop or remote access 
 - `qemu-system-riscv64` installed
 - Docker or Podman installed
 - `kas-container` installed
+- `createrepo_c` installed
 - 20 GB or more available storage space
 
 Attendees are also strongly encouraged to download the following prebuilt artifacts beforehand in the event that storage space or download speed becomes a problem.
@@ -28,6 +29,7 @@ sudo apt install qemu-system-misc
 
 **Fedora/RHEL/CentOS:**
 ```
+sudo dnf update
 sudo dnf install qemu-system-riscv
 ```
 
@@ -60,12 +62,14 @@ Here is the quickest way to get Docker up and running on Debian or Ubuntu. The i
 
 **Debian/Ubuntu:**
 ```
+sudo apt update
 sudo apt install docker.io
 ```
 
-Start Docker daemon and add yourself to `docker` group:
+Start daemon, enable service, and add yourself to `docker` group:
 ```
 sudo systemctl start docker
+sudo systemctl enable docker
 sudo usermod -aG docker $USER
 ```
 
@@ -106,7 +110,35 @@ Add to `$HOME/bin` to the `PATH` environment variable in your `.bashrc` or `.pro
 
 Log out and back in for `PATH` environment variable changes to take effect.
 
-## Download prepopulated `sstate-cache`
+Verify installation:
+```
+$ kas-container --version
+kas-container 4.7
+```
+
+## Install `createrepo_c`
+
+The installation method varies between Linux distros.
+
+**Debian/Ubuntu:**
+```
+sudo apt update
+sudo apt install createrepo-c
+```
+
+**Fedora/RHEL/CentOS:**
+```
+sudo dnf update
+sudo dnf install createrepo_c
+```
+
+Verify installation:
+```
+$ createrepo_c --version
+Version: 1.2.0 (Features: DeltaRPM LegacyWeakdeps )
+```
+
+## Download `sstate-cache`
 
 Skip this step if you have already transferred all three `sstate-cache` parts to your Linux machine.
 
@@ -132,7 +164,7 @@ total 4.0G
 -rw-r--r-- 1 frank frank 1.6G Oct 13 12:48 sstate-cache-part3.tar.gz
 ```
 
-## Extract prepopulated `sstate-cache`
+## Extract `sstate-cache`
 
 Create Yocto work directory:
 ```

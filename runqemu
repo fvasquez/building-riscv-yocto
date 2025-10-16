@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]; then
-  echo "ERROR: run with sudo"
-  exit 1
-fi
-
-KAS_WORK_DIR=/var/home/frank/yocto
+KAS_WORK_DIR=${HOME}/yocto
 IMAGE_DIR="${KAS_WORK_DIR}/build/tmp/deploy/images/qemuriscv64"
 KERNEL="${IMAGE_DIR}/Image"
 ROOTFS="${IMAGE_DIR}/core-image-minimal-qemuriscv64.rootfs.ext4"

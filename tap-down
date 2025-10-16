@@ -5,4 +5,4 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-sudo ip tuntap del dev tap0 mode tap
+ip tuntap del dev tap0 mode tap
