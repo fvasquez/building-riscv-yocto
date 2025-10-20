@@ -10,12 +10,14 @@ repos:
   poky:
     url: https://git.yoctoproject.org/poky
     branch: walnascar
+    commit: d0b46a6
     layers:
       meta:
 
   meta-openembedded:
     url: https://git.openembedded.org/meta-openembedded
     branch: walnascar
+    commit: 80ab58c
     layers:
       meta-oe:
 
