@@ -1,0 +1,37 @@
+header:
+  version: 16
+
+machine: beaglev-ahead
+distro: poky
+target:
+  - core-image-minimal
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/poky
+    branch: master
+    layers:
+      meta:
+      meta-poky:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    branch: master
+    layers:
+      meta-oe:
+
+  meta-riscv:
+    url: https://github.com/riscv/meta-riscv
+    branch: master
+    layers:
+      .:
+
+local_conf_header:
+  meta: |
+    INHERIT += "rm_work"
+
+  debug-tweaks: |
+    EXTRA_IMAGE_FEATURES += "empty-root-password allow-root-login allow-empty-password"
+
+  package-management: |
+    EXTRA_IMAGE_FEATURES += "package-management"
