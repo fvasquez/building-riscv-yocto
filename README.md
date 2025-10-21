@@ -14,6 +14,7 @@ Attendees are also strongly encouraged to download the following prebuilt artifa
 
 - Prebuilt `qemuriscv64.tar.gz` image: https://github.com/fvasquez/building-riscv-yocto/releases/tag/v1.0
 - Prepopulated `sstate-cache` parts 1 to 3: https://github.com/fvasquez/building-riscv-yocto/releases/tag/v1.1
+- Slide deck (PDF): https://github.com/fvasquez/building-riscv-yocto/releases/tag/v1.2
 
 The three `sstate-cache` parts consume 4 GB of storage space before extraction.
 
